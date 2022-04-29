@@ -8,12 +8,15 @@ const testSchool = "ABC School";
 describe("Intern", () => {
   test("should return true", () => {
     const testIntern = new Intern(
-      testInternName,
       testInternId,
+      testInternName,
       testInternEmail,
       testSchool
     );
 
     expect(testIntern.school).toEqual(testSchool);
+    expect(testIntern.id).toEqual(testInternId);
+    expect(testIntern.name).toEqual(testInternName);
+    expect(testIntern.email).toEqual(testInternEmail);
   });
 });
