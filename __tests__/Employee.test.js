@@ -8,7 +8,7 @@ describe("Employee", () => {
   test("should return true", () => {
     const testEmployee = new Employee(testId, testName, testEmail);
 
-    expect(testEmployee.name).toEqual(testName);
+    expect(testEmployee.getName()).toEqual(testName);
     expect(testEmployee.id).toEqual(testId);
     expect(testEmployee.email).toEqual(testEmail);
   });

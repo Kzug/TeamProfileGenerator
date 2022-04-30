@@ -68,13 +68,35 @@ function initQuestionLoop() {
       } else {
         managerCards = managers.map((manager) => {
           return `
+          <div>
           <h1>${manager.name}</h1>
           <h2>${manager.officeNum}</h2>
           <h2>${manager.id}</h2>
           <h2>${manager.email}</h2>
+          </div>
           `;
         });
-        generateHTML();
+        engineerCards = engineers.map((engineer) => {
+          return `
+          <div>
+          <h1>${engineer.name}</h1>
+          <h2>${engineer.github}</h2>
+          <h2>${engineer.id}</h2>
+          <h2>${engineer.email}</h2>
+          </div>
+          `;
+        });
+        internCards = interns.map((intern) => {
+          return `
+          <div>
+          <h1>${intern.name}</h1>
+          <h2>${intern.school}</h2>
+          <h2>${intern.id}</h2>
+          <h2>${intern.email}</h2>
+          </div>
+          `;
+        });
+        generateHTML(managerCards, engineerCards, internCards);
       }
     });
 }
@@ -157,8 +179,8 @@ initManagerQuestions();
 // ${managerCards.map((card) => {
 //   return card;
 // })}
-const generateHTML = (managerCards) =>
-  `<!DOCTYPE html>
+const generateHTML = (managerCards, engineerCards, internCards) => {
+  let html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -169,17 +191,18 @@ const generateHTML = (managerCards) =>
 <body>
   <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Role: Manager </h1>
-    <p class="lead>Test:${managerCards}</p>
+   ${managerCards}
+   ${engineerCards}
+   ${internCards}
   </div>
 </div>
 </body>
 </html>`;
 
-fs.writeFile("index.html", managerCards, (err) =>
-  err ? console.log(err) : console.log("Successfully created index.html!")
-);
-
+  fs.writeFile("index.html", html, (err) =>
+    err ? console.log(err) : console.log("Successfully created index.html!")
+  );
+};
 //   .then((answers) => {
 //     const htmlPageContent = generateHTML(answers);
 
