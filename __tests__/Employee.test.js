@@ -7,7 +7,7 @@ const testRole = "hobbit";
 
 describe("Employee name", () => {
   test("should return true", () => {
-    const testEmployee = new Employee(testId, testName, testEmail);
+    const testEmployee = new Employee(testId, testName, testEmail, testRole);
 
     expect(testEmployee.getName()).toEqual(testName);
   });
@@ -15,7 +15,7 @@ describe("Employee name", () => {
 
 describe("Employee ID", () => {
   test("should return true", () => {
-    const testEmployee = new Employee(testId, testName, testEmail);
+    const testEmployee = new Employee(testId, testName, testEmail, testRole);
 
     expect(testEmployee.getId()).toEqual(testId);
   });
@@ -23,8 +23,16 @@ describe("Employee ID", () => {
 
 describe("Employee e-mail", () => {
   test("should return true", () => {
-    const testEmployee = new Employee(testId, testName, testEmail);
+    const testEmployee = new Employee(testId, testName, testEmail, testRole);
 
     expect(testEmployee.getEmail()).toEqual(testEmail);
+  });
+});
+
+describe("Employee role", () => {
+  test("should return true", () => {
+    const testEmployee = new Employee(testId, testName, testEmail, testRole);
+
+    expect(testEmployee.getRole()).toEqual(testRole);
   });
 });

@@ -8,10 +8,10 @@ const testGithub = "github/DShrute";
 describe("Engineer name", () => {
   test("should return true", () => {
     const testEngineer = new Engineer(
-      engineerId,
       engineerName,
-      engineerEmail,
-      testGithub
+      testGithub,
+      engineerId,
+      engineerEmail
     );
 
     expect(testEngineer.getName()).toEqual(engineerName);
@@ -21,16 +21,25 @@ describe("Engineer name", () => {
 describe("Engineer id", () => {
   test("should return true", () => {
     const testEngineer = new Engineer(
-      engineerId,
       engineerName,
-      engineerEmail,
-      testGithub
+      testGithub,
+      engineerId,
+      engineerEmail
     );
 
     expect(testEngineer.getId()).toEqual(engineerId);
   });
 });
 
-// expect(testEngineer.id).toEqual(engineerId);
-// expect(testEngineer.email).toEqual(engineerEmail);
-// expect(testEngineer.github).toEqual(testGithub);
+describe("Engineer role", () => {
+  test("should return true", () => {
+    const testEngineer = new Engineer(
+      engineerName,
+      testGithub,
+      engineerId,
+      engineerEmail
+    );
+
+    expect(testEngineer.getRole()).toEqual("Engineer");
+  });
+});
