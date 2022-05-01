@@ -5,7 +5,7 @@ const engineerId = "001";
 const engineerEmail = "beatsbears@galactica.com";
 const testGithub = "github/DShrute";
 
-describe("Engineer", () => {
+describe("Engineer name", () => {
   test("should return true", () => {
     const testEngineer = new Engineer(
       engineerId,
@@ -14,9 +14,23 @@ describe("Engineer", () => {
       testGithub
     );
 
-    expect(testEngineer.name).toEqual(engineerName);
-    expect(testEngineer.id).toEqual(engineerId);
-    expect(testEngineer.email).toEqual(engineerEmail);
-    expect(testEngineer.github).toEqual(testGithub);
+    expect(testEngineer.getName()).toEqual(engineerName);
   });
 });
+
+describe("Engineer id", () => {
+  test("should return true", () => {
+    const testEngineer = new Engineer(
+      engineerId,
+      engineerName,
+      engineerEmail,
+      testGithub
+    );
+
+    expect(testEngineer.getId()).toEqual(engineerId);
+  });
+});
+
+// expect(testEngineer.id).toEqual(engineerId);
+// expect(testEngineer.email).toEqual(engineerEmail);
+// expect(testEngineer.github).toEqual(testGithub);

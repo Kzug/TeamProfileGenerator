@@ -9,7 +9,6 @@ const Intern = require("./lib/Intern");
 
 //arrays
 const managers = [];
-// let managerCards = []; Should I make this a global variable?
 const engineers = [];
 const interns = [];
 
@@ -24,7 +23,7 @@ function initManagerQuestions() {
       {
         type: "input",
         message: "Enter your office number",
-        name: "officeNum",
+        name: "officeNumber",
       },
       {
         type: "input",
@@ -40,7 +39,7 @@ function initManagerQuestions() {
     .then((answer) => {
       const manager = new Manager(
         answer.name,
-        answer.officeNum,
+        answer.officeNumber,
         answer.id,
         answer.email
       );
@@ -66,33 +65,39 @@ function initQuestionLoop() {
       } else if (employeeType === "Intern") {
         initInternQuestions();
       } else {
-        managerCards = managers.map((manager) => {
+        let managerCards = managers.map((manager) => {
           return `
-          <div>
-          <h1>${manager.name}</h1>
-          <h2>${manager.officeNum}</h2>
-          <h2>${manager.id}</h2>
-          <h2>${manager.email}</h2>
+          <div class="card text-white bg-danger mb-3" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">Manager: ${manager.name}</h5>
+          <h6>Office Number: ${manager.officeNumber}</h6>
+          <h6>ID: ${manager.id}</h6>
+          <h6><a href = "mailto:${manager.email}">${manager.email}</a></h6>
+          </div>
           </div>
           `;
         });
-        engineerCards = engineers.map((engineer) => {
+        let engineerCards = engineers.map((engineer) => {
           return `
-          <div>
-          <h1>${engineer.name}</h1>
-          <h2>${engineer.github}</h2>
-          <h2>${engineer.id}</h2>
-          <h2>${engineer.email}</h2>
+          <div class="card text-white bg-success mb-3" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">Engineer: ${engineer.name}</h5>
+          <h6><a href = "https://github.com/${engineer.github}">Github</a></h6>
+          <h6>ID: ${engineer.id}</h6>
+          <h6><a href = "mailto:${engineer.email}">${engineer.email}</a></h6>
+          </div>
           </div>
           `;
         });
-        internCards = interns.map((intern) => {
+        let internCards = interns.map((intern) => {
           return `
-          <div>
-          <h1>${intern.name}</h1>
-          <h2>${intern.school}</h2>
-          <h2>${intern.id}</h2>
-          <h2>${intern.email}</h2>
+          <div class="card text-white bg-warning mb-3" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">Intern: ${intern.name}</h5>
+          <h6>School: ${intern.school}</h6>
+          <h6>ID: ${intern.id}</h6>
+          <h6><a href = "mailto:${intern.email}">${intern.email}</a></h6>
+          </div>
           </div>
           `;
         });
@@ -121,16 +126,16 @@ function initEngineerQuestions() {
       },
       {
         type: "input",
-        message: "Enter engineer's github",
+        message: "Enter engineer's github username",
         name: "github",
       },
     ])
     .then((answer) => {
       const engineer = new Engineer(
         answer.name,
+        answer.github,
         answer.id,
-        answer.email,
-        answer.github
+        answer.email
       );
       engineers.push(engineer);
       initQuestionLoop();
@@ -164,9 +169,9 @@ function initInternQuestions() {
     .then((answer) => {
       const intern = new Intern(
         answer.name,
+        answer.school,
         answer.id,
-        answer.email,
-        answer.school
+        answer.email
       );
       interns.push(intern);
       initQuestionLoop();
@@ -175,10 +180,6 @@ function initInternQuestions() {
 
 initManagerQuestions();
 
-// pass this function managerCards, engineerCards, internCards...then:
-// ${managerCards.map((card) => {
-//   return card;
-// })}
 const generateHTML = (managerCards, engineerCards, internCards) => {
   let html = `<!DOCTYPE html>
 <html lang="en">
@@ -190,7 +191,7 @@ const generateHTML = (managerCards, engineerCards, internCards) => {
 </head>
 <body>
   <div class="jumbotron jumbotron-fluid">
-  <div class="container">
+  <div class="container card-group">
    ${managerCards}
    ${engineerCards}
    ${internCards}
@@ -203,15 +204,3 @@ const generateHTML = (managerCards, engineerCards, internCards) => {
     err ? console.log(err) : console.log("Successfully created index.html!")
   );
 };
-//   .then((answers) => {
-//     const htmlPageContent = generateHTML(answers);
-
-//     // hint hint
-//     const inquirerEmployee = new Employee(
-//       answers.id,
-//       answers.name,
-//       answers.email
-//     );
-//     console.log(inquirerEmployee);
-
-//add a loop to one of the prompts
